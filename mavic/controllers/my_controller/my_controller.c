@@ -153,21 +153,21 @@ void change_manual_steer_angle(int inc) {
 void check_keyboard() {
   int key = wb_keyboard_get_key();
   switch (key) {
-    case WB_KEYBOARD_UP:
+    case 'W':
       set_speed(speed + 0.5);
       break;
-    case WB_KEYBOARD_DOWN:
+    case 'S':
       set_speed(speed - 0.5);
       break;
-    case WB_KEYBOARD_RIGHT:
+    case 'D':
       change_manual_steer_angle(+1);
       break;
-    case WB_KEYBOARD_LEFT:
+    case 'A':
       change_manual_steer_angle(-1);
       break;
-    case 'A':
-      set_autodrive(true);
-      break;
+    // case 'A':
+      // set_autodrive(true);
+      // break;
   }
 }
 
