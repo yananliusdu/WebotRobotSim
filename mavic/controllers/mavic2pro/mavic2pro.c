@@ -109,7 +109,7 @@ int main(int argc, char **argv) {
   const double k_pitch_p = 30.0;          // P constant of the pitch PID.
 
   // Variables.
-  double target_altitude = 20.0;  // The target altitude. Can be changed by the user.
+  double target_altitude = 13.0;  // The target altitude. Can be changed by the user.
 
   // Main loop
   while (wb_robot_step(timestep) != -1) {
