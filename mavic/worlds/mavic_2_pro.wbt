@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.25689779105712196 -0.9569152183573204 -0.1353395353403182 4.991735412518705
-  position 4.121598622558158 2.851826454208742 1.1990792987943784
+  orientation -0.4083384393167815 0.8953381518833288 0.17784631780973295 1.1268022238598958
+  position 151.8774366291505 86.35670421992813 74.65705819591709
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -28,7 +28,39 @@ Floor {
   size 400 400
   tileSize 6 6
   appearance SandyGround {
+    IBLStrength 0
   }
+}
+ModernSuburbanHouse {
+  translation 41.4337 0 -61.5516
+  rotation 0 1 0 3.14159
+}
+Pine {
+  translation -26.9029 0 -8.29205
+  name "pine tree(9)"
+}
+PalmTree {
+  translation 15.39 0 47.22
+  name "palm tree(5)"
+}
+PalmTree {
+  translation 0 0 41.14
+}
+PalmTree {
+  translation 5.1 0 41.14
+  name "palm tree(1)"
+}
+PalmTree {
+  translation 9.63 0 41.14
+  name "palm tree(2)"
+}
+PalmTree {
+  translation 15.72 0 41.14
+  name "palm tree(3)"
+}
+PalmTree {
+  translation -5.93 0 41.14
+  name "palm tree(4)"
 }
 BungalowStyleHouse {
   translation 18.87 0 -18.99
@@ -82,20 +114,29 @@ CardboardBox {
   rotation 0 1 0 -0.261795307179586
 }
 Pine {
-  translation -14.0083 0 14.4828
+  translation -14.0083 0 5.1328
   rotation 0 1 0 3.14159
 }
 Pine {
-  translation -19.6195 0 24.3783
+  translation -7.36412 0 7.04005
   rotation 0 1 0 2.87979
   name "pine tree(1)"
+}
+Pine {
+  translation -20.3558 0 3.55889
+  rotation 0 1 0 2.87979
+  name "pine tree(7)"
 }
 Pine {
   translation -22.0129 0 -6.20205
   name "pine tree(3)"
 }
 Pine {
-  translation -10.6926 0 25.1339
+  translation -16.2429 0 -5.36205
+  name "pine tree(8)"
+}
+Pine {
+  translation -31.1126 0 0.7439
   name "pine tree(4)"
 }
 Pine {
@@ -103,7 +144,7 @@ Pine {
   name "pine tree(5)"
 }
 Pine {
-  translation -26.6328 0 7.1707
+  translation -26.6328 0 2.3007
   name "pine tree(6)"
 }
 Pine {
