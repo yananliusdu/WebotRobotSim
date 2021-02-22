@@ -112,7 +112,8 @@ int main(int argc, char **argv) {
   double target_altitude = 13.0;  // The target altitude. Can be changed by the user.
 
   // Main loop
-  unsigned int count = 0;
+  unsigned int frame_count = 0;
+  unsigned int save_count = 0;
   while (wb_robot_step(timestep) != -1) {
   
     const double time = wb_robot_get_time();  // in seconds.
@@ -172,15 +173,18 @@ int main(int argc, char **argv) {
       key = wb_keyboard_get_key();
     }
     
-    
-    
-    //saving images from camera
-    char filename[40];
-    char *path = "E:\\RobotSim\\data_collection\\";
-    char *img = ".png";
-    sprintf(filename, "%s%d%s", path,count,img);
-    wb_camera_save_image(camera, filename, 100);
-    
+    bool save = (frame_count%100 == 0);
+    if((abs(altitude - target_altitude) <= 0.5) && save)
+    {
+        //saving images from camera
+      char filename[40];
+      char *path = "E:\\RobotSim\\data_collection\\";
+      char *img = ".png";
+      sprintf(filename, "%s%d%s", path,save_count,img);
+      wb_camera_save_image(camera, filename, 100);
+      save_count++; 
+    }
+      
     
     // Compute the roll, pitch, yaw and vertical inputs.
     const double roll_input = k_roll_p * CLAMP(roll, -1.0, 1.0) + roll_acceleration + roll_disturbance;
@@ -199,8 +203,7 @@ int main(int argc, char **argv) {
     wb_motor_set_velocity(rear_left_motor, -rear_left_motor_input);
     wb_motor_set_velocity(rear_right_motor, rear_right_motor_input);
     
-    count++;
-     
+    frame_count++;
   };
 
   wb_robot_cleanup();
