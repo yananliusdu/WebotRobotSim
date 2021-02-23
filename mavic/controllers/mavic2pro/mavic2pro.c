@@ -49,7 +49,7 @@ const int img_capture_lap = 400;
 void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance, double *yaw_disturbance, double *target_altitude)
 {
 
-   const double disturbance = 2.0;
+   const double disturbance = 1.5;
    while (*key > 0) {
       switch (*key) {
         case WB_KEYBOARD_UP:

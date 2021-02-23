@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.3665792869681506 0.8927967041606321 0.2617893645773926 1.515983154928703
-  position 6.453782200627069 6.016096415712074 1.3719389548508318
+  orientation -0.30027380684926286 0.9258906695174184 0.22926427768153992 1.5679076038408846
+  position 120.2266062866043 92.37564711675779 -1.1373583762310187
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -70,46 +70,25 @@ Forest {
   maxRadius 5
   minRadius 7
 }
-UnevenTerrain {
-  translation 0 -0.29 37.89
-  appearance DEF Soil PBRAppearance {
-    baseColorMap ImageTexture {
-      url [
-        "textures/grass/grass_prickly_base_color.jpg"
-      ]
-      repeatS FALSE
-      repeatT FALSE
-      filtering 3
-    }
-    roughnessMap ImageTexture {
-      url [
-        "textures/grass/grass_artificial_base_color.jpg"
-      ]
-      repeatS FALSE
-      filtering 5
-    }
-    metalness 0
-    IBLStrength 0
-    normalMap ImageTexture {
-      url [
-        "textures/sandy_ground/sandy_ground_normal.jpg"
-      ]
-      filtering 5
-    }
-    occlusionMap ImageTexture {
-      url [
-        "textures/pavement/braun_square_stone_pavement_roughness.jpg"
-      ]
-      repeatS FALSE
-      repeatT FALSE
-      filtering 5
-    }
-    textureTransform DEF ElectricConduit TextureTransform {
-      scale 50 50
-    }
-  }
-  flatBounds TRUE
-  perlinNOctaves 2
+Forest {
+  translation -16.7579 -0.1 26.1238
+  rotation 0 1 0 -2.3561953071795863
+  density 0.1
+  type "palm tree"
+  randomSeed 1
+  minHeight 7
+  maxRadius 5
+  minRadius -2
+}
+Forest {
+  translation 35.4832 -0.1 37.1544
+  rotation 0 -1 0 2.0944
+  density 0.1
+  type "crab apple tree"
+  randomSeed 1
+  minHeight 7
+  maxRadius 5
+  minRadius -2
 }
 ModernSuburbanHouse {
   translation 41.4337 0 -61.5516

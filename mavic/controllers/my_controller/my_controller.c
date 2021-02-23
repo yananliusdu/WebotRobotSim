@@ -154,10 +154,10 @@ void check_keyboard() {
   int key = wb_keyboard_get_key();
   switch (key) {
     case 'W':
-      set_speed(speed + 0.5);
+      set_speed(speed + 0.3);
       break;
     case 'S':
-      set_speed(speed - 0.5);
+      set_speed(speed - 0.3);
       break;
     case 'D':
       change_manual_steer_angle(+1);
