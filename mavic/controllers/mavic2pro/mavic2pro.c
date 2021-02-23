@@ -44,6 +44,44 @@
 double speed = 0.0;
 double steering_angle = 0.0;
 int manual_steering = 0;
+const int img_capture_lap = 400;
+
+void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance, double *yaw_disturbance, double *target_altitude)
+{
+
+   const double disturbance = 2.0;
+   while (*key > 0) {
+      switch (*key) {
+        case WB_KEYBOARD_UP:
+          *pitch_disturbance = disturbance;
+          break;
+        case WB_KEYBOARD_DOWN:
+          *pitch_disturbance = -disturbance;
+          break;
+        case WB_KEYBOARD_RIGHT:
+          *roll_disturbance = -disturbance;
+          break;
+        case WB_KEYBOARD_LEFT:
+           *roll_disturbance = disturbance;
+          break;
+        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_RIGHT):
+          *yaw_disturbance = disturbance;
+          break;
+        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_LEFT):
+          *yaw_disturbance = -disturbance;
+          break;
+        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_UP):
+          *target_altitude += 0.05;
+          printf("target altitude: %f [m]\n", *target_altitude);
+          break;
+        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_DOWN):
+          *target_altitude -= 0.05;
+          printf("target altitude: %f [m]\n", *target_altitude);
+          break;
+      }
+      *key = wb_keyboard_get_key();
+    }
+}
 
 int main(int argc, char **argv) {
  
@@ -141,39 +179,10 @@ int main(int argc, char **argv) {
     double yaw_disturbance = 0.0;
          
     int key = wb_keyboard_get_key();
-    while (key > 0) {
-      switch (key) {
-        case WB_KEYBOARD_UP:
-          pitch_disturbance = 2.6;
-          break;
-        case WB_KEYBOARD_DOWN:
-          pitch_disturbance = -2.6;
-          break;
-        case WB_KEYBOARD_RIGHT:
-          yaw_disturbance = 1.3;
-          break;
-        case WB_KEYBOARD_LEFT:
-          yaw_disturbance = -1.3;
-          break;
-        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_RIGHT):
-          roll_disturbance = -1.0;
-          break;
-        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_LEFT):
-          roll_disturbance = 1.0;
-          break;
-        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_UP):
-          target_altitude += 0.05;
-          printf("target altitude: %f [m]\n", target_altitude);
-          break;
-        case (WB_KEYBOARD_SHIFT + WB_KEYBOARD_DOWN):
-          target_altitude -= 0.05;
-          printf("target altitude: %f [m]\n", target_altitude);
-          break;
-      }
-      key = wb_keyboard_get_key();
-    }
+    get_input_key(&key, &roll_disturbance, &pitch_disturbance, &yaw_disturbance, &target_altitude);
     
-    bool save = (frame_count%100 == 0);
+    
+    bool save = (frame_count%img_capture_lap == 0);
     if((abs(altitude - target_altitude) <= 0.5) && save)
     {
         //saving images from camera
@@ -184,7 +193,7 @@ int main(int argc, char **argv) {
       wb_camera_save_image(camera, filename, 100);
       save_count++; 
     }
-      
+    
     
     // Compute the roll, pitch, yaw and vertical inputs.
     const double roll_input = k_roll_p * CLAMP(roll, -1.0, 1.0) + roll_acceleration + roll_disturbance;
