@@ -26,6 +26,7 @@
 #include <webots/lidar.h>
 #include <webots/robot.h>
 #include <webots/vehicle/driver.h>
+#include <webots/supervisor.h>
 
 #include <math.h>
 #include <stdio.h>
@@ -88,6 +89,7 @@ void print_help() {
   printf("[LEFT]/[RIGHT] - steer\n");
   printf("[UP]/[DOWN] - accelerate/slow down\n");
 }
+
 
 void set_autodrive(bool onoff) {
   if (autodrive == onoff)
@@ -314,6 +316,16 @@ double applyPID(double yellow_line_angle) {
 int main(int argc, char **argv) {
   wbu_driver_init();
 
+  WbNodeRef robot_node = wb_supervisor_node_get_from_def("TeslaModel3");
+  WbFieldRef trans_vehicle = wb_supervisor_node_get_field(robot_node, "translation");
+  WbFieldRef rot_vehicle = wb_supervisor_node_get_field(robot_node, "rotation");
+
+   // reset the robot
+  const double INITIAL_TRANS[3] = { 3, 0.165, 3 };
+  const double INITIAL_ROT[3] = {0,0,0};
+  wb_supervisor_field_set_sf_vec3f(trans_vehicle, INITIAL_TRANS);
+  wb_supervisor_field_set_sf_vec3f(rot_vehicle, INITIAL_ROT);
+  
   // check if there is a SICK and a display
   int j = 0;
   for (j = 0; j < wb_robot_get_number_of_devices(); ++j) {

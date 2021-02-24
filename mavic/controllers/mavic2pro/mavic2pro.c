@@ -36,6 +36,7 @@
 #include <webots/keyboard.h>
 #include <webots/led.h>
 #include <webots/motor.h>
+#include <webots/supervisor.h>
 
 #define SIGN(x) ((x) > 0) - ((x) < 0)
 #define CLAMP(value, low, high) ((value) < (low) ? (low) : ((value) > (high) ? (high) : (value)))
@@ -113,6 +114,8 @@ int main(int argc, char **argv) {
   WbDeviceTag rear_left_motor = wb_robot_get_device("rear left propeller");
   WbDeviceTag rear_right_motor = wb_robot_get_device("rear right propeller");
   WbDeviceTag motors[4] = {front_left_motor, front_right_motor, rear_left_motor, rear_right_motor};
+  
+  
   int m;
   for (m = 0; m < 4; ++m) {
     wb_motor_set_position(motors[m], INFINITY);
@@ -172,7 +175,8 @@ int main(int argc, char **argv) {
     wb_motor_set_position(camera_roll_motor, -0.115 * roll_acceleration);
     // wb_motor_set_position(camera_pitch_motor, -0.1 * pitch_acceleration);
     wb_motor_set_position(camera_pitch_motor, M_PI/2);
-
+    
+  
     // Transform the keyboard input to disturbances on the stabilization algorithm.
     double roll_disturbance = 0.0;
     double pitch_disturbance = 0.0;
@@ -187,7 +191,7 @@ int main(int argc, char **argv) {
     {
         //saving images from camera
       char filename[40];
-      char *path = "E:\\RobotSim\\data_collection\\";
+      char *path = "E:\\RobotSim\\data_collectionV1\\";
       char *img = ".png";
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);
