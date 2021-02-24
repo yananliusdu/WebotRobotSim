@@ -26,6 +26,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <webots/robot.h>
 #include <webots/camera.h>
@@ -37,6 +38,8 @@
 #include <webots/led.h>
 #include <webots/motor.h>
 #include <webots/supervisor.h>
+#include <webots/emitter.h>
+
 
 #define SIGN(x) ((x) > 0) - ((x) < 0)
 #define CLAMP(value, low, high) ((value) < (low) ? (low) : ((value) > (high) ? (high) : (value)))
@@ -87,9 +90,10 @@ void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance
 int main(int argc, char **argv) {
  
   wb_robot_init();
-      
+   
+  WbDeviceTag emitter = wb_robot_get_device('emitter');
   int timestep = (int)wb_robot_get_basic_time_step();
-
+  
   // Get and enable devices.
   WbDeviceTag camera = wb_robot_get_device("camera");
   wb_camera_enable(camera, timestep);
@@ -198,6 +202,9 @@ int main(int argc, char **argv) {
       save_count++; 
     }
     
+    char message[128];
+    sprintf(message, "hello");
+    wb_emitter_send(emitter, message, strlen(message) + 1);
     
     // Compute the roll, pitch, yaw and vertical inputs.
     const double roll_input = k_roll_p * CLAMP(roll, -1.0, 1.0) + roll_acceleration + roll_disturbance;

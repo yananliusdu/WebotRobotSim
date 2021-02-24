@@ -11,4 +11,5 @@ build/release/mavic2pro.o: mavic2pro.c \
  C:\Program\ Files\Webots/include/controller/c/webots/keyboard.h \
  C:\Program\ Files\Webots/include/controller/c/webots/led.h \
  C:\Program\ Files\Webots/include/controller/c/webots/motor.h \
- C:\Program\ Files\Webots/include/controller/c/webots/supervisor.h
+ C:\Program\ Files\Webots/include/controller/c/webots/supervisor.h \
+ C:\Program\ Files\Webots/include/controller/c/webots/emitter.h
