@@ -87,11 +87,26 @@ void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance
     }
 }
 
+void display_help_info()
+{
+  // Display manual control message.
+  printf("You can control the drone with your computer keyboard:\n");
+  printf("- 'up': move forward.\n");
+  printf("- 'down': move backward.\n");
+  printf("- 'right': turn right.\n");
+  printf("- 'left': turn left.\n");
+  printf("- 'shift + up': increase the target altitude.\n");
+  printf("- 'shift + down': decrease the target altitude.\n");
+  printf("- 'shift + right': strafe right.\n");
+  printf("- 'shift + left': strafe left.\n");
+
+}
+
 int main(int argc, char **argv) {
  
   wb_robot_init();
    
-  WbDeviceTag emitter = wb_robot_get_device('emitter');
+  WbDeviceTag emitter = wb_robot_get_device("emitter");
   int timestep = (int)wb_robot_get_basic_time_step();
   
   // Get and enable devices.
@@ -135,16 +150,7 @@ int main(int argc, char **argv) {
       break;
   }
 
-  // Display manual control message.
-  printf("You can control the drone with your computer keyboard:\n");
-  printf("- 'up': move forward.\n");
-  printf("- 'down': move backward.\n");
-  printf("- 'right': turn right.\n");
-  printf("- 'left': turn left.\n");
-  printf("- 'shift + up': increase the target altitude.\n");
-  printf("- 'shift + down': decrease the target altitude.\n");
-  printf("- 'shift + right': strafe right.\n");
-  printf("- 'shift + left': strafe left.\n");
+  display_help_info();
 
   // Constants, empirically found.
   const double k_vertical_thrust = 68.5;  // with this thrust, the drone lifts.
@@ -200,11 +206,18 @@ int main(int argc, char **argv) {
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);
       save_count++; 
+      
+      double drone_pos[2] = {0};
+      drone_pos[0] = wb_gps_get_values(gps)[0];
+      drone_pos[1] = wb_gps_get_values(gps)[2];
+
+    wb_emitter_set_channel(emitter, WB_CHANNEL_BROADCAST);
+    wb_emitter_send(emitter, drone_pos, sizeof(drone_pos) + 1);
+      
+       
     }
     
-    char message[128];
-    sprintf(message, "hello");
-    wb_emitter_send(emitter, message, strlen(message) + 1);
+ 
     
     // Compute the roll, pitch, yaw and vertical inputs.
     const double roll_input = k_roll_p * CLAMP(roll, -1.0, 1.0) + roll_acceleration + roll_disturbance;

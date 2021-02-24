@@ -14,7 +14,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.1221858454960459 0.9742189975087941 0.18965221868825208 2.258048696279053
-  position 6.013213857889064 3.9220322703042156 -4.728676620311749
+  position 4.35958168266174 3.005427808440987 -3.3977304790451077
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -239,6 +239,11 @@ DEF Mavic2Pro Mavic2Pro {
   translation -0.350386 0.0899991 -0.201281
   rotation -0.055111377602836235 0.7066182068168104 0.7054455654788064 3.0377380708349135
   supervisor TRUE
+  bodySlot [
+    DEF emitter Emitter {
+      type "serial"
+    }
+  ]
   cameraSlot [
     Camera {
       fieldOfView 1.57
@@ -253,4 +258,9 @@ DEF TeslaModel3 TeslaModel3 {
   rotation 0.015135377989016612 0.9998540014771686 0.007930703829013105 -1.1364392614294134
   controller "my_controller"
   supervisor TRUE
+  sensorsSlotFront [
+    DEF receiver Receiver {
+      type "serial"
+    }
+  ]
 }
