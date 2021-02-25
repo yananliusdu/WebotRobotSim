@@ -48,7 +48,7 @@
 double speed = 0.0;
 double steering_angle = 0.0;
 int manual_steering = 0;
-const int img_capture_lap = 400;
+const int img_capture_lap = 20;
 
 void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance, double *yaw_disturbance, double *target_altitude)
 {
@@ -211,13 +211,10 @@ int main(int argc, char **argv) {
       drone_pos[0] = wb_gps_get_values(gps)[0];
       drone_pos[1] = wb_gps_get_values(gps)[2];
 
-    wb_emitter_set_channel(emitter, WB_CHANNEL_BROADCAST);
-    wb_emitter_send(emitter, drone_pos, sizeof(drone_pos) + 1);
-      
-       
+      wb_emitter_set_channel(emitter, WB_CHANNEL_BROADCAST);
+      wb_emitter_send(emitter, drone_pos, 2 * sizeof(double));
+
     }
-    
- 
     
     // Compute the roll, pitch, yaw and vertical inputs.
     const double roll_input = k_roll_p * CLAMP(roll, -1.0, 1.0) + roll_acceleration + roll_disturbance;
