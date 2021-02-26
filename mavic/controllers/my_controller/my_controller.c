@@ -32,11 +32,13 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 // to be used as array indices
 enum { X, Y, Z };
 
-#define TIME_STEP 50
+#define TIME_STEP 4
+#define TIME_STEP_REC 4
 #define UNKNOWN 99999.99
 
 // Line following PID
@@ -169,20 +171,14 @@ int main(int argc, char **argv) {
 
   wbu_driver_init();
   WbDeviceTag receiver = wb_robot_get_device("receiver");
-  wb_receiver_enable(receiver, TIME_STEP);
+  wb_receiver_enable(receiver, TIME_STEP_REC);
   wb_receiver_set_channel(receiver, WB_CHANNEL_BROADCAST);
  
 
-  WbNodeRef robot_node = wb_supervisor_node_get_from_def("TeslaModel3");
-  WbFieldRef trans_vehicle = wb_supervisor_node_get_field(robot_node, "translation");
-  // WbFieldRef rot_vehicle = wb_supervisor_node_get_field(robot_node, "rotation");
+   WbNodeRef robot_node = wb_supervisor_node_get_from_def("TeslaModel3");
+   WbFieldRef trans_vehicle = wb_supervisor_node_get_field(robot_node, "translation");
+   WbFieldRef rot_vehicle = wb_supervisor_node_get_field(robot_node, "rotation");
 
-   // reset the robot
-  const double INITIAL_TRANS[3] = { 3, 0.165, 3 };
-  // const double INITIAL_ROT[3] = {0,0,0};
-  wb_supervisor_field_set_sf_vec3f(trans_vehicle, INITIAL_TRANS);
-  // wb_supervisor_field_set_sf_vec3f(rot_vehicle, INITIAL_ROT);
-  
 
   // start engine
   wbu_driver_set_hazard_flashers(true);
@@ -194,18 +190,56 @@ int main(int argc, char **argv) {
   wb_keyboard_enable(TIME_STEP);
 
   // main loop
-  while (wbu_driver_step() != -1) {
+  while (wbu_driver_step(8) != -1) {
     // get user input
     check_keyboard();
     static int i = 0;
     
     while (wb_receiver_get_queue_length(receiver) > 0) {
-      const char *message = wb_receiver_get_data(receiver);
-      printf("received: %s \n",message);
+    
+      double *message = (double *)wb_receiver_get_data(receiver);
+      printf("received: %f , %f\n",message[0], message[1]);
       wb_receiver_next_packet(receiver);
+      
+      // reset the robot
+      double INITIAL_TRANS[3] = {0.0};
+      INITIAL_TRANS[0] = 0.0;
+      INITIAL_TRANS[1] = 0.165;
+      INITIAL_TRANS[2] = 0.0;
+      double step_mov = 2.8;
+      int step = 3;
+      
+      double INITIAL_ROT[4] = {0.0};  //[x,y,z,r] where y = 1
+      INITIAL_ROT[1] = 1.0; 
+      double rot_step = M_PI/4;
+      
+      double receiver_msg0 = message[0];
+      double receiver_msg1 = message[1];
+      
+      for(int i = -step; i <= step; i++ )
+      {
+          INITIAL_TRANS[0] =  receiver_msg0 + step_mov*i;
+          printf("INITIAL_TRANS[0] %f , message[0] %f \n", INITIAL_TRANS[0], message[0]);
+          
+          wb_supervisor_field_set_sf_vec3f(trans_vehicle, INITIAL_TRANS);
+          for(int j = -step; j <= step; j++)
+          {
+             INITIAL_TRANS[2] =  receiver_msg1 + step_mov*j;
+             wb_supervisor_field_set_sf_vec3f(trans_vehicle, INITIAL_TRANS);
+             
+             for(float r = 0; r <= M_PI; r +=rot_step)
+             {
+                  INITIAL_ROT[3] += r;
+                  wb_supervisor_field_set_sf_rotation(rot_vehicle, INITIAL_ROT);
+                  wb_robot_step(32);
+                  wb_receiver_next_packet(receiver);
+             }
+          }         
+      }
+ 
+     
     }
     
-    wb_receiver_next_packet(receiver);
     ++i;
   }
 

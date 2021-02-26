@@ -48,7 +48,7 @@
 double speed = 0.0;
 double steering_angle = 0.0;
 int manual_steering = 0;
-const int img_capture_lap = 20;
+const int img_capture_lap = 40;
 
 void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance, double *yaw_disturbance, double *target_altitude)
 {
@@ -164,10 +164,10 @@ int main(int argc, char **argv) {
 
   // Main loop
   unsigned int frame_count = 0;
-  unsigned int save_count = 0;
+  unsigned int save_count = 1644;
   while (wb_robot_step(timestep) != -1) {
   
-    const double time = wb_robot_get_time();  // in seconds.
+      const double time = wb_robot_get_time();  // in seconds.
 
     // Retrieve robot position using the sensors.
     const double roll = wb_inertial_unit_get_roll_pitch_yaw(imu)[0] + M_PI / 2.0;
@@ -195,7 +195,10 @@ int main(int argc, char **argv) {
     int key = wb_keyboard_get_key();
     get_input_key(&key, &roll_disturbance, &pitch_disturbance, &yaw_disturbance, &target_altitude);
     
-    
+     double drone_pos[2] = {0};
+     drone_pos[0] = wb_gps_get_values(gps)[0];
+     drone_pos[1] = wb_gps_get_values(gps)[2];
+           
     bool save = (frame_count%img_capture_lap == 0);
     if((abs(altitude - target_altitude) <= 0.5) && save)
     {
@@ -206,14 +209,11 @@ int main(int argc, char **argv) {
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);
       save_count++; 
-      
-      double drone_pos[2] = {0};
-      drone_pos[0] = wb_gps_get_values(gps)[0];
-      drone_pos[1] = wb_gps_get_values(gps)[2];
 
       wb_emitter_set_channel(emitter, WB_CHANNEL_BROADCAST);
       wb_emitter_send(emitter, drone_pos, 2 * sizeof(double));
-
+       printf("Emitter: %f  %f \n", drone_pos[0], drone_pos[1]);
+      
     }
     
     // Compute the roll, pitch, yaw and vertical inputs.

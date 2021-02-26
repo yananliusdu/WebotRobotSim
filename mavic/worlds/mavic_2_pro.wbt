@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.12671442734651667 0.9518181430437462 0.27925915647476757 2.492723809461151
-  position 6.034767363931433 6.9843646568542335 -5.062443818984752
+  orientation -0.048160167982514136 0.9565675401520275 0.28750502490807905 2.989184653854617
+  position 1.8666387071401382 8.51835199541067 -9.822199508445973
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -166,7 +166,7 @@ SmallManor {
   rotation 0 1 0 4.32
 }
 SquareManhole {
-  translation 0 -0.03 0
+  translation -1.75 -0.03 0
 }
 DEF cardbox CardboardBox {
   translation -0.730157 0.3 1.22891
@@ -236,12 +236,12 @@ Forest {
   minRadius 3
 }
 DEF Mavic2Pro Mavic2Pro {
-  translation 0.00415182 0.0919098 -0.00557806
+  translation -1.86004 0.083945 0.0135185
   rotation -0.055111377602836235 0.7066182068168104 0.7054455654788064 3.0377380708349135
   supervisor TRUE
   bodySlot [
     DEF emitter Emitter {
-      type "serial"
+      locked TRUE
       channel -1
     }
   ]
@@ -256,13 +256,12 @@ DEF Mavic2Pro Mavic2Pro {
 }
 DEF TeslaModel3 TeslaModel3 {
   translation 3.51471 0.164478 2.0794
-  rotation -0.013413200107737243 -0.999897919563295 -0.0049230596039648794 1.2673103061004252
   controller "my_controller"
   supervisor TRUE
   synchronization FALSE
   sensorsSlotFront [
     DEF receiver Receiver {
-      type "serial"
+      locked TRUE
       channel -1
     }
   ]
