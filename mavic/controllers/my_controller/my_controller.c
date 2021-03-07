@@ -195,8 +195,10 @@ int main(int argc, char **argv) {
     check_keyboard();
     static int i = 0;
     
-    while (wb_receiver_get_queue_length(receiver) > 0) {
+    continue;  // for running
     
+    // for data collection
+    while (wb_receiver_get_queue_length(receiver) > 0) {    
       double *message = (double *)wb_receiver_get_data(receiver);
       printf("received: %f , %f\n",message[0], message[1]);
       wb_receiver_next_packet(receiver);

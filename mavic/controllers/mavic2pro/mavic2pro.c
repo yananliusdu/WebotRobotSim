@@ -164,7 +164,7 @@ int main(int argc, char **argv) {
 
   // Main loop
   unsigned int frame_count = 0;
-  unsigned int save_count = 1644;
+  unsigned int save_count = 0;
   while (wb_robot_step(timestep) != -1) {
   
       const double time = wb_robot_get_time();  // in seconds.
@@ -199,12 +199,13 @@ int main(int argc, char **argv) {
      drone_pos[0] = wb_gps_get_values(gps)[0];
      drone_pos[1] = wb_gps_get_values(gps)[2];
            
+     //save images
     bool save = (frame_count%img_capture_lap == 0);
     if((abs(altitude - target_altitude) <= 0.5) && save)
     {
         //saving images from camera
       char filename[40];
-      char *path = "E:\\RobotSim\\data_collectionV1\\";
+      char *path = "E:\\RobotSim\\data_collectionV1\\InferenceImg\\";
       char *img = ".png";
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);
