@@ -195,8 +195,8 @@ int main(int argc, char **argv) {
     check_keyboard();
     static int i = 0;
     
-    continue;  // for running
-    
+    // continue;  // for running
+                 
     // for data collection
     while (wb_receiver_get_queue_length(receiver) > 0) {    
       double *message = (double *)wb_receiver_get_data(receiver);
@@ -208,8 +208,8 @@ int main(int argc, char **argv) {
       INITIAL_TRANS[0] = 0.0;
       INITIAL_TRANS[1] = 0.165;
       INITIAL_TRANS[2] = 0.0;
-      double step_mov = 2.8;
-      int step = 3;
+      double step_mov = 2.5;
+      int step = 2.5;
       
       double INITIAL_ROT[4] = {0.0};  //[x,y,z,r] where y = 1
       INITIAL_ROT[1] = 1.0; 

@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.048160167982514136 0.9565675401520275 0.28750502490807905 2.989184653854617
-  position 1.8666387071401382 8.51835199541067 -9.822199508445973
+  orientation 0.07800573025371817 -0.9649897231552352 -0.2504195284964153 3.538266206394287
+  position 85.90658151096197 146.75704915161097 -209.03828853007747
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -61,6 +61,43 @@ Floor {
     }
   }
 }
+MercedesBenzSprinter {
+  translation -9.41 0.4445 -8.91
+}
+Bus {
+  translation 6.15 0.55 25.69
+  color 1 1 1
+  name "vehicle(5)"
+}
+Bus {
+  translation 11.16 0.55 20.77
+  color 0.5 0.5 0.42
+  name "vehicle(6)"
+}
+Bus {
+  translation 17.62 0.55 16.57
+  name "vehicle(7)"
+}
+ResidentialTower {
+  translation 93.57 0 -99.37
+  rotation 0 1 0 3.14159
+}
+ModernSuburbanHouse {
+  translation -93.72 0 -15.66
+  name "suburban house(1)"
+}
+Carwash {
+  translation 63.2048 0 4.697
+  rotation 0 1 0 0.523599
+}
+ModernHouse {
+  translation 138.501 0 -81.4578
+  rotation 0 -1 0 1.0472
+}
+ComposedHouse {
+  translation 125.28 0 -27.687
+  rotation 0 1 0 0.523599
+}
 Forest {
   translation -4.56 -1 -38.02
   density 0.1
@@ -91,7 +128,7 @@ Forest {
   minRadius -2
 }
 ModernSuburbanHouse {
-  translation 41.4337 0 -61.5516
+  translation 41.4337 0 -50.5716
   rotation 0 1 0 3.14159
 }
 Pine {
@@ -130,6 +167,12 @@ Road {
   rotation 0 1 0 1.1781
   width 3
   numberOfLanes 1
+  lines [
+    RoadLine {
+      type "continuous"
+      width 0.23
+    }
+  ]
   rightBorder FALSE
   leftBorder FALSE
   wayPoints [
@@ -142,24 +185,8 @@ Road {
     type "black stone"
   }
 }
-Windmill {
-  translation -43.8656 0 19.8433
-  rotation 0 1 0 -1.0472
-}
-Windmill {
-  translation -44.258 0 27.3356
-  rotation 0 1 0 -1.0472
-  name "windmill(1)"
-}
-Windmill {
-  translation -46.2448 0 -30.573
-  rotation 0 1 0 -1.0472
-  name "windmill(2)"
-}
-Windmill {
-  translation -38.75 0 -23.4
-  rotation 0 1 0 -1.5708
-  name "windmill(3)"
+MotelReception {
+  translation 33.58 0 -4.99
 }
 SmallManor {
   translation -50.35 0 -11.25
@@ -265,4 +292,15 @@ DEF TeslaModel3 TeslaModel3 {
       channel -1
     }
   ]
+}
+Church {
+  translation 33.1 0 18.9
+}
+TruckSimple {
+  translation -57.08 0.5 -35.95
+  name "vehicle(1)"
+}
+TruckSimple {
+  translation -63.61 0.5 -33.6
+  name "vehicle(4)"
 }
