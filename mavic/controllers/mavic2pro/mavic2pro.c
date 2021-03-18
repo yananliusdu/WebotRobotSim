@@ -160,7 +160,7 @@ int main(int argc, char **argv) {
   const double k_pitch_p = 30.0;          // P constant of the pitch PID.
 
   // Variables.
-  double target_altitude = 13.0;  // The target altitude. Can be changed by the user.
+  double target_altitude = 10.0;  // 13.0 The target altitude. Can be changed by the user.
 
   // Main loop
   unsigned int frame_count = 0;
@@ -205,7 +205,7 @@ int main(int argc, char **argv) {
     {
         //saving images from camera
       char filename[40];
-      char *path = "E:\\RobotSim\\data_collectionV1\\InferenceImg\\";
+      char *path = "E:\\WebotData\\DatasetV2\\";
       char *img = ".png";
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);

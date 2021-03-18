@@ -203,6 +203,8 @@ int main(int argc, char **argv) {
       printf("received: %f , %f\n",message[0], message[1]);
       wb_receiver_next_packet(receiver);
       
+      continue;
+      
       // reset the robot
       double INITIAL_TRANS[3] = {0.0};
       INITIAL_TRANS[0] = 0.0;
