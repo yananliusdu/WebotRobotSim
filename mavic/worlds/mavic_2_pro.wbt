@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.11490715935115756 0.9096417442842885 0.39918447087190767 2.747972101325822
-  position 30.015327300161896 76.88924457054364 -59.587674708814745
+  orientation 0.06792406064079351 -0.9559379220718882 -0.28560289062078187 3.423136306223215
+  position 59.25919293162596 98.38686778753181 -144.49353412978473
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -64,9 +64,25 @@ Floor {
     }
   }
 }
+Road {
+  translation -44 0.1 -9
+  rotation 0 1 0 1.1781003061004252
+  name "road(4)"
+  lines [
+    RoadLine {
+      width 0.05
+    }
+  ]
+  wayPoints [
+    0 0 0
+    0 0 100
+    200 0 200
+  ]
+}
 Bus {
-  translation 17.620000000000005 0.13300257961575598 16.56791331215956
-  rotation -0.9999999999999999 -2.4574003578338605e-11 -2.254378091624649e-11 5.1730773889927443e-05
+  translation 22.068068659573722 0.13228399999646545 16.567928595610557
+  rotation -6.107728148741344e-09 -0.9999999999999989 -4.617537289555253e-08 -9.100595589117094e-06
+  color 1 1 1
   name "vehicle(7)"
 }
 ResidentialTower {
@@ -78,7 +94,7 @@ ModernSuburbanHouse {
   name "suburban house(1)"
 }
 Carwash {
-  translation 63.2048 0 4.697
+  translation 63.9598 0 6.00469
   rotation 0 1 0 0.523599
 }
 ModernHouse {
@@ -139,33 +155,8 @@ PalmTree {
   name "palm tree(4)"
 }
 BungalowStyleHouse {
-  translation 18.87 0 -18.99
+  translation 18.87 0 -30.17
   rotation 0 1 0 -1.5707953071795862
-}
-Road {
-  translation -43.8 0.01 -9.2
-  rotation 0 1 0 1.1781
-  width 6
-  lines [
-    RoadLine {
-      type "continuous"
-      width 0.2
-    }
-  ]
-  roadBorderWidth [
-    1.8
-  ]
-  rightBorder FALSE
-  leftBorder FALSE
-  wayPoints [
-    0 0 0
-    0 0 100
-    200 0 200
-  ]
-  splineSubdivision 8
-  appearance Pavement {
-    type "tiles"
-  }
 }
 MotelReception {
   translation 33.58 0 -4.99
@@ -177,17 +168,13 @@ SmallManor {
 SquareManhole {
   translation -1.75 -0.03 0
 }
-DEF cardbox CardboardBox {
-  translation -0.730157 0.3 1.22891
-  rotation 0 1 0 -0.261795307179586
-}
 Pine {
-  translation -7.36412 0 7.04005
+  translation -8.10436 0 9.80258
   rotation 0 1 0 2.87979
   name "pine tree(1)"
 }
 Pine {
-  translation -16.2429 0 -5.36205
+  translation -16.2429 0 -9.772
   name "pine tree(8)"
 }
 Pine {
@@ -228,8 +215,8 @@ Forest {
   minRadius 3
 }
 DEF Mavic2Pro Mavic2Pro {
-  translation -1.79317 0.142331 -0.165582
-  rotation 0.054374402697205344 0.709550035196748 0.7025540348497161 -3.032475307179586
+  translation -1.66741 0.137385 -0.0106471
+  rotation -0.9337613434712829 0.2552875056980071 0.2508346923238385 1.6392217183329132
   supervisor TRUE
   bodySlot [
     DEF emitter Emitter {
@@ -244,12 +231,17 @@ DEF Mavic2Pro Mavic2Pro {
       height 256
       near 0.2
       antiAliasing TRUE
+      recognition Recognition {
+        maxObjects 1
+        frameThickness 3
+        segmentation TRUE
+      }
     }
   ]
 }
 DEF TeslaModel3 TeslaModel3 {
-  translation 3.514709999989565 0.1694147099850991 2.0763454644434747
-  rotation -1 4.216720568969174e-12 2.949258012651042e-09 0.015674738950178065
+  translation 2.22065 0.205365 0.558
+  rotation -0.011126811809177305 0.9999105433114132 0.007422899274382254 1.324693862448568
   plate [
     "textures/plate.jpg"
     ""
@@ -268,33 +260,57 @@ Church {
   translation 33.1 0 18.9
 }
 TruckSimple {
-  translation -57.08 0.5 -35.95
+  translation -13.39 0.5 -27.87
   name "vehicle(1)"
 }
 TruckSimple {
-  translation -63.61 0.5 -33.6
+  translation -21.64 0.5 -25.73
+  recognitionColors [
+    0 0 0
+    0 0 0
+    0.39 0 0
+  ]
   name "vehicle(4)"
 }
-AddLaneRoadSegment {
-  translation 8 0.01 9
-  rotation 0 1 0 -0.1308996938995747
-  name "road(1)"
-  width 6
-  length 29
-}
 Roundabout {
-  translation -29 0.01 -20
-  rotation 0 1 0 0.3926996938995747
+  translation 16 0.01 -10
+  rotation 0 1 0 0.72
+  startRoadsLine [
+    RoadLine {
+      type "continuous"
+      width 0.05
+    }
+  ]
 }
 StraightRoadSegment {
   translation 38 0.01 -43
   rotation 0 1 0 0.1308996938995747
   name "road(2)"
+  lines [
+    RoadLine {
+      width 0.05
+    }
+  ]
   length 68
 }
 StraightRoadSegment {
   translation 86 0.01 -63
   rotation 0 1 0 0.6544996938995746
   name "road(3)"
+  lines [
+    RoadLine {
+      width 0.05
+    }
+  ]
   length 38
+}
+StraightRoadSegment {
+  translation 10 0.01 10
+  width 10
+  lines [
+    RoadLine {
+      width 0.05
+    }
+  ]
+  length 57
 }

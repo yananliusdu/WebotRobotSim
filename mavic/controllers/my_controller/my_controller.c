@@ -195,7 +195,7 @@ int main(int argc, char **argv) {
     check_keyboard();
     static int i = 0;
     
-    // continue;  // for running
+    continue;  // for running
                  
     // for data collection
     while (wb_receiver_get_queue_length(receiver) > 0) {    
