@@ -205,7 +205,7 @@ int main(int argc, char **argv) {
     {
         //saving images from camera
       char filename[40];
-      char *path = "E:\\WebotData\\road_segmentation\\";
+      char *path = "E:\\WebotData\\DatasetV2\\inference\\data_collection_webot\\";
       char *img = ".png";
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);

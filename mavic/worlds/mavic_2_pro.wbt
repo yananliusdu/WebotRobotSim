@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.06792406064079351 -0.9559379220718882 -0.28560289062078187 3.423136306223215
-  position 59.25919293162596 98.38686778753181 -144.49353412978473
+  orientation 0.01491631874755151 -0.9507916538194296 -0.3094717021996285 3.0781575595464874
+  position -5.3117920568466825 30.262126586996295 -37.65407539943022
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -70,8 +70,11 @@ Road {
   name "road(4)"
   lines [
     RoadLine {
-      width 0.05
+      width 0
     }
+  ]
+  roadBorderWidth [
+    0.5
   ]
   wayPoints [
     0 0 0
@@ -275,12 +278,19 @@ TruckSimple {
 Roundabout {
   translation 16 0.01 -10
   rotation 0 1 0 0.72
+  startRoadsStartLine [
+    ""
+    ""
+  ]
   startRoadsLine [
     RoadLine {
       type "continuous"
-      width 0.05
+      width 0
     }
   ]
+  appearance Asphalt {
+    colorOverride 0 0 0
+  }
 }
 StraightRoadSegment {
   translation 38 0.01 -43
@@ -288,7 +298,7 @@ StraightRoadSegment {
   name "road(2)"
   lines [
     RoadLine {
-      width 0.05
+      width 0
     }
   ]
   length 68
@@ -299,7 +309,7 @@ StraightRoadSegment {
   name "road(3)"
   lines [
     RoadLine {
-      width 0.05
+      width 0
     }
   ]
   length 38
@@ -309,7 +319,7 @@ StraightRoadSegment {
   width 10
   lines [
     RoadLine {
-      width 0.05
+      width 0
     }
   ]
   length 57
