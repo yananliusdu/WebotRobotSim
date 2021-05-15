@@ -48,7 +48,7 @@
 double speed = 0.0;
 double steering_angle = 0.0;
 int manual_steering = 0;
-const int img_capture_lap = 40;
+const int img_capture_lap = 60;
 
 void get_input_key(int *key, double *roll_disturbance, double *pitch_disturbance, double *yaw_disturbance, double *target_altitude)
 {
@@ -164,7 +164,7 @@ int main(int argc, char **argv) {
 
   // Main loop
   unsigned int frame_count = 0;
-  unsigned int save_count = 0;
+  unsigned int save_count = 500;
   while (wb_robot_step(timestep) != -1) {
   
       const double time = wb_robot_get_time();  // in seconds.
@@ -205,7 +205,7 @@ int main(int argc, char **argv) {
     {
         //saving images from camera
       char filename[40];
-      char *path = "E:\\WebotData\\DatasetV2\\inference\\data_collection_webot\\";
+      char *path = "E:\\WebotData\\DatasetV2\\webot_data_collection_dynamic_swapping\\test\\";
       char *img = ".png";
       sprintf(filename, "%s%d%s", path,save_count,img);
       wb_camera_save_image(camera, filename, 100);
