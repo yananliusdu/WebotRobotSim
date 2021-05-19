@@ -1,0 +1,22 @@
+{
+    "classes": [
+        {
+            "title": "car_seg",
+            "shape": "polygon",
+            "color": "#7349BC",
+            "geometry_config": {},
+            "id": 2826134,
+            "hotkey": ""
+        },
+        {
+            "title": "car_seg1",
+            "shape": "bitmap",
+            "color": "#90274A",
+            "geometry_config": {},
+            "id": 2826135,
+            "hotkey": ""
+        }
+    ],
+    "tags": [],
+    "projectType": "images"
+}

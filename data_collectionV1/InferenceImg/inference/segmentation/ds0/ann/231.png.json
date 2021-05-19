@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 256,
+        "width": 256
+    },
+    "objects": [
+        {
+            "id": 633828605,
+            "classId": 2826134,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "lynsdu",
+            "createdAt": "2021-03-08T13:18:26.913Z",
+            "updatedAt": "2021-03-08T13:18:34.135Z",
+            "tags": [],
+            "classTitle": "car_seg",
+            "points": {
+                "exterior": [
+                    [
+                        48,
+                        135
+                    ],
+                    [
+                        54,
+                        128
+                    ],
+                    [
+                        63,
+                        128
+                    ],
+                    [
+                        69,
+                        134
+                    ],
+                    [
+                        69,
+                        172
+                    ],
+                    [
+                        65,
+                        176
+                    ],
+                    [
+                        54,
+                        178
+                    ],
+                    [
+                        48,
+                        169
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}
