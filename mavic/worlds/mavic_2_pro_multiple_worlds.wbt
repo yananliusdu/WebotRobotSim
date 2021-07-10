@@ -13,8 +13,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.0740055128617022 -0.9430061910719559 -0.3244418401902538 2.5670295256568783
-  position -11.102525441920244 17.718499362199438 -11.63443639841076
+  orientation -0.1738169108379475 -0.8887139031811515 -0.42423493467567647 2.3274609207179786
+  position -76.91051229027144 140.4371466681285 -77.07362323375534
   near 0.2
   follow "Mavic 2 PRO"
   followSmoothness 0.2
@@ -202,7 +202,7 @@ Forest {
   minRadius -2
 }
 ModernSuburbanHouse {
-  translation 41.4337 0 -50.5716
+  translation 63.7437 0 -50.5716
   rotation 0 1 0 3.14159
 }
 PalmTree {
@@ -357,7 +357,7 @@ Roundabout {
   }
 }
 StraightRoadSegment {
-  translation 38 0.01 -43
+  translation 34 0.02 -118
   rotation 0 1 0 0.1308996938995747
   name "road(2)"
   lines [
@@ -367,7 +367,9 @@ StraightRoadSegment {
   ]
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 68
+  length 120
+  appearance Soil {
+  }
 }
 StraightRoadSegment {
   translation 86 0.01 -64
